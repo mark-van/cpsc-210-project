@@ -24,3 +24,10 @@ I have several motivations:
     - A *belief* that people want to help but are often too involved in their life to determine how to best assist those 
     in need
 - I would use it
+
+##User Stories
+
+- As a user, I want to be able to create a new task and add it to a to-do list
+- As a user, I want to be able to mark a task as complete and move it to the list of accomplishment
+- As a user, I want to be able to mark a task as failed, and move it to the list of failures
+- As a user, I want to be able to view the list of tasks on my to-do list
