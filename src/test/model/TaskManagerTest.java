@@ -15,7 +15,7 @@ class TaskManagerTest {
     private Task t3;
 
     @BeforeEach
-    public void runBefore(){
+    public void runBefore() {
         tm1 = new TaskManager();
         t1 = new Task(new Victim("impoverished", "If you're ordering a tall coffe drink it's costing " +
                 "you,\n " + "on average, $3.34 daily, $1,221 annually and $6,105 over 5 years!"), "Give to the " +
@@ -27,8 +27,9 @@ class TaskManagerTest {
                 "wasted food per year – at a cost of more than $1,100 per year!"), "Feed the hungry", "http" +
                 "s://www.savethechildren.org/us/what-we-do/emergency-response/helping-starving-african-children");
     }
+
     @Test
-    public void testAddTask(){
+    public void testAddTask() {
         assertTrue(tm1.getTasks().isEmpty());
         tm1.addTask(t1);
         assertEquals(tm1.getTasks().size(), 1);
@@ -37,12 +38,12 @@ class TaskManagerTest {
                 "and switch to more environmentally friendly tansportation");
         tm1.addTask(t3);
         //Do I need to look through every single path to check if correct?
-        assertEquals(tm1.getTasks().get(2).getUrl(),"http" +
+        assertEquals(tm1.getTasks().get(2).getUrl(), "http" +
                 "s://www.savethechildren.org/us/what-we-do/emergency-response/helping-starving-african-children");
     }
 
     @Test
-    public void testFailTask(){
+    public void testFailTask() {
         //add tasks
         tm1.addTask(t1);
         tm1.addTask(t2);
@@ -58,7 +59,7 @@ class TaskManagerTest {
     }
 
     @Test
-    public void testAccomplishTask(){
+    public void testAccomplishTask() {
         //add tasks
         tm1.addTask(t1);
         tm1.addTask(t2);
@@ -80,7 +81,7 @@ class TaskManagerTest {
     }
 
     @Test
-    public void TestGetListOfTaskIT(){
+    public void TestGetListOfTaskIT() {
         //add tasks
         tm1.addTask(t1);
         tm1.addTask(t2);
@@ -92,8 +93,6 @@ class TaskManagerTest {
         assertEquals("2. Shut doors, start a compost, " +
                 "and switch to more environmentally friendly tansportation", lt1.get(1));
     }
-
-
 
 
 }
