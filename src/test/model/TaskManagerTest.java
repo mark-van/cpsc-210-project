@@ -89,7 +89,7 @@ class TaskManagerTest {
 
 
         List<String> lt1 = tm1.getListOfTaskIT();
-        //check that second element in list is formated correctly
+        //checks that second element in list is formated correctly
         assertEquals("2. Shut doors, start a compost, " +
                 "and switch to more environmentally friendly tansportation", lt1.get(1));
     }
