@@ -16,6 +16,8 @@ public class TaskManager {
         failed = new ArrayList<>();
     }
 
+    //MODIFIES: this
+    //Effects: adds task to tasks list
     public void addTask(Task task) {
         tasks.add(task);
     }
