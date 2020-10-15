@@ -3,10 +3,11 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+// Represents a task manager having a tasks, accomplishments, and failed lists
 public class TaskManager {
-    private List<Task> tasks;
-    private List<Task> accomplishments;
-    private List<Task> failed;
+    private List<Task> tasks;              // list of current tasks
+    private List<Task> accomplishments;    // list of completed tasks
+    private List<Task> failed;             // list of failed tasks
 
     // EFFECTS: constructs an empty list of tasks, accomplishments, and failed
     public TaskManager() {

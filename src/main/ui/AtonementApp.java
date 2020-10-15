@@ -7,6 +7,7 @@ import model.Task;
 import java.util.Scanner;
 
 //This class is based on the code in The TellApp class from the TellApp project
+//Atonement application
 public class AtonementApp {
     private TaskManager user;
     private Scanner input;
