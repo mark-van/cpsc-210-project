@@ -25,24 +25,24 @@ public class TaskManager implements Writable {
     }
 
     //MODIFIES: this
-    //Effects: adds task to tasks list
+    //EFFECTS: adds task to tasks list
     public void addTask(Task task) {
         tasks.add(task);
     }
 
     //MODIFIES: this
-    //Effects: moves task in index number-1 from list to failed. If no task is at number-1 index then do nothing.
+    //EFFECTS: moves task in index number-1 from list to failed. If no task is at number-1 index then do nothing.
     public void failTask(int number) {
         failed.add(tasks.remove(number - 1));
     }
 
     //MODIFIES: this
-    //Effects: moves task in index number-1 from list to failed. If no task is at number-1 index then do nothing.
+    //EFFECTS: moves task in index number-1 from list to failed. If no task is at number-1 index then do nothing.
     public void accomplishTask(int number) {
         accomplishments.add(tasks.remove(number - 1));
     }
 
-    //Effects: returns list of strings containing the index number + 1 and the title for each task on the tasks list
+    //EFFECTS: returns list of strings containing the index number + 1 and the title for each task on the tasks list
     public List<String> getListOfTaskIT() {
         List<String> list = new ArrayList<>();
         String it;

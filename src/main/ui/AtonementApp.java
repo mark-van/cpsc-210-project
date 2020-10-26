@@ -155,7 +155,7 @@ public class AtonementApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: loads workroom from file
+    // EFFECTS: loads TaskManager from file
     private void loadTaskManager() {
         try {
             user = jsonReader.read();

@@ -24,7 +24,7 @@ public class JsonWriter {
     }
 
     // MODIFIES: this
-    // EFFECTS: writes JSON representation of workroom to file
+    // EFFECTS: writes JSON representation of TaskManager to file
     public void write(TaskManager wr) {
         JSONObject json = wr.toJson();
         saveToFile(json.toString(TAB));

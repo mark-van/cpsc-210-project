@@ -11,7 +11,7 @@ import java.nio.file.Paths;
 import java.util.stream.Stream;
 
 //heavily influenced by json demo
-// Represents a reader that reads workroom from JSON data stored in file
+// Represents a reader that reads TaskManager from JSON data stored in file
 public class JsonReader {
     private String source;
 
@@ -20,7 +20,7 @@ public class JsonReader {
         this.source = source;
     }
 
-    // EFFECTS: reads workroom from file and returns it;
+    // EFFECTS: reads TaskManger from file and returns it;
     // throws IOException if an error occurs reading data from file
     public TaskManager read() throws IOException {
         String jsonData = readFile(source);
@@ -50,26 +50,26 @@ public class JsonReader {
     }
 
     // MODIFIES: tm
-    // EFFECTS: parses thingies from JSON object and adds them to workroom
-    private void addTasks(TaskManager wr, JSONObject jsonObject, String type) {
+    // EFFECTS: parses tasks from JSON object and adds them to workroom
+    private void addTasks(TaskManager tm, JSONObject jsonObject, String type) {
         JSONArray jsonArray = jsonObject.getJSONArray(type);
         for (Object json : jsonArray) {
             JSONObject nextTask = (JSONObject) json;
-            addTask(wr, nextTask, type);
+            addTask(tm, nextTask, type);
         }
     }
 
     // MODIFIES: tm
-    // EFFECTS: parses thingy from JSON object and adds it to workroom
-    private void addTask(TaskManager wr, JSONObject jsonObject, String type) {
+    // EFFECTS: parses tasks from JSON object and adds it to workroom
+    private void addTask(TaskManager tm, JSONObject jsonObject, String type) {
         String title = jsonObject.getString("title");
         String url = jsonObject.getString("url");
         Victim victim = getVictim(jsonObject);
         Task task = new Task(victim, title, url);
-        wr.addTasks(task, type);
+        tm.addTasks(task, type);
     }
 
-    // EFFECTS: parses thingy from JSON object and makes victim
+    // EFFECTS: parses from JSON object and makes victim
     public Victim getVictim(JSONObject jsonObject) {
         String name = jsonObject.getString("victim name");
         String message = jsonObject.getString("victim message");
