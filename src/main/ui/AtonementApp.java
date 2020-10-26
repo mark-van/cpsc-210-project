@@ -3,14 +3,21 @@ package ui;
 import model.TaskManager;
 import model.Victim;
 import model.Task;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 //This class is based on the code in The TellApp class from the TellApp project
 //Atonement application
 public class AtonementApp {
+    private static final String JSON_STORE = "./data/taskmanager.json";
     private TaskManager user;
     private Scanner input;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     // EFFECTS: runs the teller application
     public AtonementApp() {
@@ -43,6 +50,8 @@ public class AtonementApp {
     private void init() {
         user = new TaskManager();
         input = new Scanner(System.in);
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
     }
 
     // EFFECTS: displays menu of options to user
@@ -51,7 +60,9 @@ public class AtonementApp {
         System.out.println("\tt -> new task");
         System.out.println("\tc -> complete task");
         System.out.println("\tf -> fail task");
+        System.out.println("\ts -> save task manager to file");
         System.out.println("\tv -> view todoList");
+        System.out.println("\tl -> load task manager from file");
         System.out.println("\tq -> quit");
     }
 
@@ -66,6 +77,10 @@ public class AtonementApp {
             doFailTask();
         } else if (command.equals("v")) {
             displayTasks();
+        } else if (command.equals("s")) {
+            saveTaskManager();
+        } else if (command.equals("l")) {
+            loadTaskManager();
         } else {
             System.out.println("Selection not valid...");
         }
@@ -126,11 +141,29 @@ public class AtonementApp {
             System.out.println("You have no tasks to fail");
         }
     }
-    /*
-    private void doViewTodoList() {
-        displayTasks();
+
+    // EFFECTS: saves the TaskManager to file
+    private void saveTaskManager() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(user);
+            jsonWriter.close();
+            System.out.println("Saved task manager to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
     }
-    */
+
+    // MODIFIES: this
+    // EFFECTS: loads workroom from file
+    private void loadTaskManager() {
+        try {
+            user = jsonReader.read();
+            System.out.println("Loaded task manager from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
+    }
 
 
 }

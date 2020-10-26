@@ -1,0 +1,19 @@
+{
+    "accomplishments": [],
+    "failed": [],
+    "tasks": [
+        {
+            "victim message": "aaa",
+            "title": "aa",
+            "victim name": "aa",
+            "url": "aa"
+        },
+        {
+            "victim message": "bb",
+            "title": "bbb",
+            "victim name": "bb",
+            "url": "b"
+        }
+    ],
+    "TaskManager:": "User"
+}

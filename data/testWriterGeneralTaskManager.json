@@ -1,0 +1,29 @@
+{
+    "accomplishments": [{
+        "victim message": "IT'S SO HOT",
+        "title": "Shut doors, start a compost, and switch to more environmentally friendly tansportation",
+        "victim name": "environment",
+        "url": "https://www.wheelsforwishes.org/news/live-a-more-eco-friendly-lifestyle/"
+    }],
+    "failed": [{
+        "victim message": "If you're ordering a tall coffe drink it's costing you,\n on average, $3.34 daily, $1,221 annually and $6,105 over 5 years!",
+        "title": "Give to the poor",
+        "victim name": "impoverished",
+        "url": "https://childrenfirstcanada.org/donate"
+    }],
+    "tasks": [
+        {
+            "victim message": "no please. weird",
+            "title": "weird",
+            "victim name": "name1",
+            "url": "www.help.com"
+        },
+        {
+            "victim message": "For the average Canadian household that amounts to 140 kilograms of\n wasted food per year \u2013 at a cost of more than $1,100 per year!",
+            "title": "Feed the hungry",
+            "victim name": "hungry",
+            "url": "https://www.savethechildren.org/us/what-we-do/emergency-response/helping-starving-african-children"
+        }
+    ],
+    "TaskManager:": "user"
+}
