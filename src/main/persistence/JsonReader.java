@@ -50,7 +50,7 @@ public class JsonReader {
     }
 
     // MODIFIES: tm
-    // EFFECTS: parses tasks from JSON object and adds them to workroom
+    // EFFECTS: parses tasks from JSON object and adds them to TaskManager
     private void addTasks(TaskManager tm, JSONObject jsonObject, String type) {
         JSONArray jsonArray = jsonObject.getJSONArray(type);
         for (Object json : jsonArray) {
@@ -60,7 +60,7 @@ public class JsonReader {
     }
 
     // MODIFIES: tm
-    // EFFECTS: parses tasks from JSON object and adds it to workroom
+    // EFFECTS: parses tasks from JSON object and adds it to TaskManager
     private void addTask(TaskManager tm, JSONObject jsonObject, String type) {
         String title = jsonObject.getString("title");
         String url = jsonObject.getString("url");

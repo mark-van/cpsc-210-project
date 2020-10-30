@@ -5,6 +5,7 @@ import model.TaskManager;
 import org.json.JSONObject;
 import java.io.*;
 
+//heavily influenced by json demo
 // Represents a writer that writes JSON representation of TaskManager to file
 public class JsonWriter {
     private static final int TAB = 4;

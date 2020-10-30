@@ -135,7 +135,7 @@ public class AtonementApp {
         if (!user.getTasks().isEmpty()) {
             displayTasks();
             System.out.println("Enter number of the task you have failed");
-            user.accomplishTask(input.nextInt());
+            user.failTask(input.nextInt());
             System.out.println("task failed!");
         } else {
             System.out.println("You have no tasks to fail");
