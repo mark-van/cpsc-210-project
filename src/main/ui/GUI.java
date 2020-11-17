@@ -14,6 +14,9 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 
 
@@ -31,8 +34,12 @@ public class GUI extends JPanel implements ListSelectionListener {
     private static final String addString = "Add Task";
     private static final String failString = "Fail";
     private static final String accomplishString = "Accomplish";
+    private static final String saveString = "Save";
+    private static final String loadString = "Load";
     private JButton failButton;
     private JButton accomplishButton;
+    private JButton saveButton;
+    private JButton loadButton;
     private JTextField victimsName;
     private JTextField victimsMessage;
     private JTextField taskTitle;
@@ -48,9 +55,9 @@ public class GUI extends JPanel implements ListSelectionListener {
 
         user = new TaskManager();
         listModel = new DefaultListModel();
-        listModel.addElement("Jane Doe");
-        listModel.addElement("John Smith");
-        listModel.addElement("Kathy Green");
+        input = new Scanner(System.in);
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
 
 
         //Create the list and put it in a scroll pane.
@@ -98,7 +105,7 @@ public class GUI extends JPanel implements ListSelectionListener {
         taskSetup.add(new JSeparator(SwingConstants.HORIZONTAL));
         taskSetup.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         add(listScrollPane, BorderLayout.CENTER);
-        add(taskSetup, BorderLayout.CENTER);
+        add(taskSetup, BorderLayout.PAGE_START);
 
         buttonPaneSetup(listScrollPane, addButton, buttonPane);
     }
@@ -110,6 +117,8 @@ public class GUI extends JPanel implements ListSelectionListener {
         buttonPane.add(Box.createHorizontalStrut(5));
         buttonPane.add(new JSeparator(SwingConstants.VERTICAL));
         buttonPane.add(Box.createHorizontalStrut(5));
+        buttonPane.add(loadButton);
+        buttonPane.add(saveButton);
 
         buttonPane.add(addButton);
         buttonPane.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
@@ -117,6 +126,14 @@ public class GUI extends JPanel implements ListSelectionListener {
     }
 
     public void buttonHelper(AddListener addListener) {
+        saveButton = new JButton(saveString);
+        saveButton.setActionCommand(saveString);
+        saveButton.addActionListener(new SaveListener());
+
+        loadButton = new JButton(loadString);
+        loadButton.setActionCommand(loadString);
+        loadButton.addActionListener(new LoadListnener());
+
         failButton = new JButton(failString);
         failButton.setActionCommand(failString);
         failButton.addActionListener(new FailListener());
@@ -125,6 +142,10 @@ public class GUI extends JPanel implements ListSelectionListener {
         accomplishButton.setActionCommand(accomplishString);
         accomplishButton.addActionListener(new AccomplishListener());
 
+        buttonHelper2(addListener);
+    }
+
+    public void buttonHelper2(AddListener addListener) {
         victimsName = new JTextField(10);
         victimsName.addActionListener(addListener);
         victimsName.getDocument().addDocumentListener(addListener);
@@ -140,6 +161,35 @@ public class GUI extends JPanel implements ListSelectionListener {
         taskURL = new JTextField(10);
         taskTitle.addActionListener(addListener);
         taskTitle.getDocument().addDocumentListener(addListener);
+    }
+
+    class SaveListener implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            try {
+                jsonWriter.open();
+                jsonWriter.write(user);
+                jsonWriter.close();
+                // System.out.println("Saved task manager to " + JSON_STORE);
+            } catch (FileNotFoundException efnfe) {
+                Toolkit.getDefaultToolkit().beep();
+            }
+        }
+    }
+
+    class LoadListnener implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            try {
+                user = jsonReader.read();
+                List<Task> loadedTasks = user.getTasks();
+                for (Task t : loadedTasks) {
+                    listModel.addElement(t.getTitle());
+                }
+                //listModel.addElement(taTitle);
+                //System.out.println("Loaded task manager from " + JSON_STORE);
+            } catch (IOException io) {
+                Toolkit.getDefaultToolkit().beep();
+            }
+        }
     }
 
     class AccomplishListener implements ActionListener {

@@ -39,11 +39,19 @@
             "url": "w"
         }
     ],
-    "tasks": [{
-        "victim message": "hhh",
-        "title": "hh",
-        "victim name": "hh",
-        "url": "hh"
-    }],
+    "tasks": [
+        {
+            "victim message": "hhh",
+            "title": "hh",
+            "victim name": "hh",
+            "url": "hh"
+        },
+        {
+            "victim message": "00",
+            "title": "00",
+            "victim name": "oo",
+            "url": "00"
+        }
+    ],
     "TaskManager:": "user"
 }

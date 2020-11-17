@@ -33,13 +33,15 @@ public class TaskManager implements Writable {
     //MODIFIES: this
     //EFFECTS: moves task in index number-1 from list to failed. If no task is at number-1 index then do nothing.
     public void failTask(int number) {
-        failed.add(tasks.remove(number - 1));
+        //failed.add(tasks.remove(number - 1));
+        failed.add(tasks.remove(number));
     }
 
     //MODIFIES: this
     //EFFECTS: moves task in index number-1 from list to failed. If no task is at number-1 index then do nothing.
     public void accomplishTask(int number) {
-        accomplishments.add(tasks.remove(number - 1));
+        //accomplishments.add(tasks.remove(number - 1));
+        accomplishments.add(tasks.remove(number));
     }
 
     //EFFECTS: returns list of strings containing the index number + 1 and the title for each task on the tasks list
