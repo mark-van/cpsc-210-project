@@ -21,6 +21,7 @@ import java.util.Scanner;
 
 
 //much grabbed from LIStDwemo class
+//Graphics user interface for atonement program
 public class GUI extends JPanel implements ListSelectionListener {
 
     private JList list;
@@ -49,7 +50,7 @@ public class GUI extends JPanel implements ListSelectionListener {
     private JLabel taskTitleL;
     private JLabel taskURLl;
 
-
+    // EFFECTS: runs the todolist application
     public GUI() {
         super(new BorderLayout());
 
@@ -84,6 +85,7 @@ public class GUI extends JPanel implements ListSelectionListener {
         makePane(listScrollPane, addButton);
     }
 
+    //EFFECTS: setups panels for GUI
     public void makePane(JScrollPane listScrollPane, JButton addButton) {
         JPanel buttonPane = new JPanel();
         JPanel taskSetup = new JPanel();
@@ -110,6 +112,7 @@ public class GUI extends JPanel implements ListSelectionListener {
         buttonPaneSetup(listScrollPane, addButton, buttonPane);
     }
 
+    //EFFECTS: sets up button plane
     public void buttonPaneSetup(JScrollPane listScrollPane, JButton addButton, JPanel buttonPane) {
         buttonPane.setLayout(new BoxLayout(buttonPane, BoxLayout.LINE_AXIS));
         buttonPane.add(failButton);
@@ -117,14 +120,17 @@ public class GUI extends JPanel implements ListSelectionListener {
         buttonPane.add(Box.createHorizontalStrut(5));
         buttonPane.add(new JSeparator(SwingConstants.VERTICAL));
         buttonPane.add(Box.createHorizontalStrut(5));
+        buttonPane.add(addButton);
+        buttonPane.add(Box.createHorizontalStrut(5));
+        buttonPane.add(new JSeparator(SwingConstants.VERTICAL));
+        buttonPane.add(Box.createHorizontalStrut(5));
         buttonPane.add(loadButton);
         buttonPane.add(saveButton);
-
-        buttonPane.add(addButton);
         buttonPane.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         add(buttonPane, BorderLayout.PAGE_END);
     }
 
+    //EFFECTS: instantiate and setup global buttons
     public void buttonHelper(AddListener addListener) {
         saveButton = new JButton(saveString);
         saveButton.setActionCommand(saveString);
@@ -132,7 +138,7 @@ public class GUI extends JPanel implements ListSelectionListener {
 
         loadButton = new JButton(loadString);
         loadButton.setActionCommand(loadString);
-        loadButton.addActionListener(new LoadListnener());
+        loadButton.addActionListener(new LoadListener());
 
         failButton = new JButton(failString);
         failButton.setActionCommand(failString);
@@ -145,6 +151,7 @@ public class GUI extends JPanel implements ListSelectionListener {
         buttonHelper2(addListener);
     }
 
+    //EFFECTS: instantiate and setup global buttons
     public void buttonHelper2(AddListener addListener) {
         victimsName = new JTextField(10);
         victimsName.addActionListener(addListener);
@@ -163,7 +170,11 @@ public class GUI extends JPanel implements ListSelectionListener {
         taskTitle.getDocument().addDocumentListener(addListener);
     }
 
+    // listener for save button
     class SaveListener implements ActionListener {
+
+        // MODIFIES: this
+        // EFFECTS: loads TaskManager from file
         public void actionPerformed(ActionEvent e) {
             try {
                 jsonWriter.open();
@@ -176,7 +187,11 @@ public class GUI extends JPanel implements ListSelectionListener {
         }
     }
 
-    class LoadListnener implements ActionListener {
+    //listener for load button
+    class LoadListener implements ActionListener {
+
+        // MODIFIES: this
+        // EFFECTS: loads TaskManager from file
         public void actionPerformed(ActionEvent e) {
             try {
                 user = jsonReader.read();
@@ -192,7 +207,11 @@ public class GUI extends JPanel implements ListSelectionListener {
         }
     }
 
+    //listener for accomplish button
     class AccomplishListener implements ActionListener {
+
+        // MODIFIES: this
+        // Effects: conducts the accomplishing of a task
         public void actionPerformed(ActionEvent e) {
             //This method can be called only if
             //there's a valid selection
@@ -218,7 +237,11 @@ public class GUI extends JPanel implements ListSelectionListener {
         }
     }
 
+    //listener for fail button
     class FailListener implements ActionListener {
+
+        // MODIFIES: this
+        // Effects: conducts the failure of a task
         public void actionPerformed(ActionEvent e) {
             //This method can be called only if
             //there's a valid selection
@@ -226,6 +249,9 @@ public class GUI extends JPanel implements ListSelectionListener {
             int index = list.getSelectedIndex();
             listModel.remove(index);
             user.failTask(index);
+
+            ImageIcon icon = createImageIcon("images/middle.gif", "a pretty but meaningless splat");
+
 
             int size = listModel.getSize();
 
@@ -244,6 +270,19 @@ public class GUI extends JPanel implements ListSelectionListener {
         }
     }
 
+    //https://docs.oracle.com/javase/tutorial/uiswing/components/icon.html
+    //grabbed code from recommended oracle tutorial project
+    //EFFECTS: creates an image with a message
+    public ImageIcon createImageIcon(String path, String description) {
+        java.net.URL imgURL = getClass().getResource(path);
+        if (imgURL != null) {
+            return new ImageIcon(imgURL, description);
+        } else {
+            System.err.println("Couldn't find file: " + path);
+            return null;
+        }
+    }
+
     //This listener is shared by the text field and the add task button.
     class AddListener implements ActionListener, DocumentListener {
         private boolean alreadyEnabled = false;
@@ -254,6 +293,8 @@ public class GUI extends JPanel implements ListSelectionListener {
         }
 
         //Required by ActionListener.
+        //MODIFIES: this
+        //EFFECTS: adds task to tasks list
         public void actionPerformed(ActionEvent e) {
             String vicName = victimsName.getText();
             String vicMessage = victimsMessage.getText();
@@ -286,6 +327,8 @@ public class GUI extends JPanel implements ListSelectionListener {
             list.ensureIndexIsVisible(index);
         }
 
+
+        //EFFECTS: helper function that resets fields
         public void resetField() {
             victimsName.requestFocusInWindow();
             victimsName.setText("");
@@ -300,6 +343,7 @@ public class GUI extends JPanel implements ListSelectionListener {
         //This method tests for string equality. You could certainly
         //get more sophisticated about the algorithm.  For example,
         //you might want to ignore white space and capitalization.
+        //EFFECTS: tests for string equality
         protected boolean alreadyInList(String taskTitle) {
             return listModel.contains(taskTitle);
         }
@@ -321,12 +365,14 @@ public class GUI extends JPanel implements ListSelectionListener {
             }
         }
 
+        //EFFECTS: turn button of if button is not already enabled
         private void enableButton() {
             if (!alreadyEnabled) {
                 button.setEnabled(true);
             }
         }
 
+        //EFFECTS: turns button off if text field is empty
         private boolean handleEmptyTextField(DocumentEvent e) {
             if (e.getDocument().getLength() <= 0) {
                 button.setEnabled(false);
@@ -337,7 +383,7 @@ public class GUI extends JPanel implements ListSelectionListener {
         }
     }
 
-    //This method is required by ListSelectionListener.
+    //This method is required by listener.
     public void valueChanged(ListSelectionEvent e) {
         if (e.getValueIsAdjusting() == false) {
 
@@ -359,6 +405,7 @@ public class GUI extends JPanel implements ListSelectionListener {
      * this method should be invoked from the
      * event-dispatching thread.
      */
+    //shows GUI
     private static void createAndShowGUI() {
         //Create and set up the window.
         JFrame frame = new JFrame("GUI");
@@ -374,6 +421,7 @@ public class GUI extends JPanel implements ListSelectionListener {
         frame.setVisible(true);
     }
 
+    //just a main function to run our program with GUI
     public static void main(String[] args) {
         //Schedule a job for the event-dispatching thread:
         //creating and showing this application's GUI.
