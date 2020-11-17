@@ -250,7 +250,7 @@ public class GUI extends JPanel implements ListSelectionListener {
             listModel.remove(index);
             user.failTask(index);
 
-            ImageIcon icon = createImageIcon("images/middle.gif", "a pretty but meaningless splat");
+            //ImageIcon icon = createImageIcon("images/middle.gif", "a pretty but meaningless splat");
 
 
             int size = listModel.getSize();
@@ -270,6 +270,7 @@ public class GUI extends JPanel implements ListSelectionListener {
         }
     }
 
+    /*
     //https://docs.oracle.com/javase/tutorial/uiswing/components/icon.html
     //grabbed code from recommended oracle tutorial project
     //EFFECTS: creates an image with a message
@@ -282,6 +283,7 @@ public class GUI extends JPanel implements ListSelectionListener {
             return null;
         }
     }
+    */
 
     //This listener is shared by the text field and the add task button.
     class AddListener implements ActionListener, DocumentListener {
