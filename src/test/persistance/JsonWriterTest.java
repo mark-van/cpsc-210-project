@@ -60,8 +60,8 @@ public class JsonWriterTest extends JsonTest {
             wr.addTask(new Task(new Victim("hungry", "For the average Canadian household that amounts to 140 kilograms of\n " +
                     "wasted food per year – at a cost of more than $1,100 per year!"), "Feed the hungry", "http" +
                     "s://www.savethechildren.org/us/what-we-do/emergency-response/helping-starving-african-children"));
-            wr.failTask(2);
-            wr.accomplishTask(2);
+            wr.failTask(1);
+            wr.accomplishTask(1);
             JsonWriter writer = new JsonWriter("./data/testWriterGeneralTaskManager.json");
             writer.open();
             writer.write(wr);

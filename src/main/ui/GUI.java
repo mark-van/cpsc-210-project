@@ -6,6 +6,7 @@ import model.Victim;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
+import javax.sound.sampled.*;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -14,8 +15,10 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URL;
 import java.util.List;
 import java.util.Scanner;
 
@@ -59,7 +62,7 @@ public class GUI extends JPanel implements ListSelectionListener {
         input = new Scanner(System.in);
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
-
+        playSound("welcome.wav");
 
         //Create the list and put it in a scroll pane.
         list = new JList(listModel);
@@ -83,6 +86,43 @@ public class GUI extends JPanel implements ListSelectionListener {
 
         //Create a panel that uses BoxLayout.
         makePane(listScrollPane, addButton);
+    }
+
+    //derivative of https://stackoverflow.com/questions/26305/how-can-i-play-sound-in-java
+    // other resources that helped https://stackoverflow.com/questions/6098472/pass-a-local-file-in-to-url-in-java
+    // https://stackoverflow.com/questions/12889275/java-and-windows-error-illegal-escape-character/
+    // EFFECTS: play sound of given wav file in ui folder
+    public void playSound(String wavFile) {
+
+        //getAudioInputStream throws exceptions so we must wrap in try/catch
+        try {
+            File myfile = new File("C:\\Users\\mark2\\IdeaProjects\\project_x2e3b\\src\\main\\ui\\" + wavFile);
+            //grabs ans audio file
+            //URL url = new URL("file:///c|\Users\mark2\IdeaProjects\project_x2e3b\src\maini\help.wav");
+            URL url = myfile.toURI().toURL();
+            //set up audio input
+            //first two catch blocks are for getAudioInputStream
+            AudioInputStream audioInput = AudioSystem.getAudioInputStream(url);
+
+            //setup a sound clip
+            //Bellow line requires last catch block and the sound sample library
+            Clip clip = AudioSystem.getClip();
+            //open clip
+            clip.open(audioInput);
+            //now we can finally play the audio. Yay
+            clip.start();
+        } catch (UnsupportedAudioFileException e1) {
+            //to indicate error we will play beep
+            Toolkit.getDefaultToolkit().beep();
+        } catch (IOException e2) {
+            Toolkit.getDefaultToolkit().beep();
+            Toolkit.getDefaultToolkit().beep();
+        } catch (LineUnavailableException e3) {
+            Toolkit.getDefaultToolkit().beep();
+            Toolkit.getDefaultToolkit().beep();
+            Toolkit.getDefaultToolkit().beep();
+        }
+
     }
 
     //EFFECTS: setups panels for GUI
@@ -136,6 +176,7 @@ public class GUI extends JPanel implements ListSelectionListener {
         saveButton.setActionCommand(saveString);
         saveButton.addActionListener(new SaveListener());
 
+
         loadButton = new JButton(loadString);
         loadButton.setActionCommand(loadString);
         loadButton.addActionListener(new LoadListener());
@@ -143,10 +184,12 @@ public class GUI extends JPanel implements ListSelectionListener {
         failButton = new JButton(failString);
         failButton.setActionCommand(failString);
         failButton.addActionListener(new FailListener());
+        failButton.setEnabled(false);
 
         accomplishButton = new JButton(accomplishString);
         accomplishButton.setActionCommand(accomplishString);
         accomplishButton.addActionListener(new AccomplishListener());
+        accomplishButton.setEnabled(false);
 
         buttonHelper2(addListener);
     }
@@ -196,6 +239,8 @@ public class GUI extends JPanel implements ListSelectionListener {
             try {
                 user = jsonReader.read();
                 List<Task> loadedTasks = user.getTasks();
+                //clear current list before loading from taskmanager
+                listModel.clear();
                 for (Task t : loadedTasks) {
                     listModel.addElement(t.getTitle());
                 }
@@ -249,7 +294,7 @@ public class GUI extends JPanel implements ListSelectionListener {
             int index = list.getSelectedIndex();
             listModel.remove(index);
             user.failTask(index);
-
+            playSound("help.wav");
             //ImageIcon icon = createImageIcon("images/middle.gif", "a pretty but meaningless splat");
 
 
@@ -433,6 +478,8 @@ public class GUI extends JPanel implements ListSelectionListener {
             }
         });
     }
+
+
 
     /*
                 if (vicName.equals("")) {

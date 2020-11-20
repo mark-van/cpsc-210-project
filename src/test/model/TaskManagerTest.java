@@ -49,7 +49,7 @@ class TaskManagerTest {
         tm1.addTask(t2);
         tm1.addTask(t3);
 
-        tm1.failTask(1);
+        tm1.failTask(0);
         // check if failed task is in failed list
         assertEquals("Give to the " + "poor", tm1.getFailed().get(0).getTitle());
         // check if first task is removed from task list
@@ -65,12 +65,12 @@ class TaskManagerTest {
         tm1.addTask(t2);
         tm1.addTask(t3);
 
-        tm1.accomplishTask(3);
+        tm1.accomplishTask(2);
         //check if accomplished task has been added to accomplished list
         assertEquals("https://www.savethechildren.org/us/what-we-do/emergency-response/helping-starving-" +
                 "african-children", tm1.getAaccomplishments().get(0).getUrl());
         //add a second accomplishment
-        tm1.accomplishTask(1);
+        tm1.accomplishTask(0);
         //check if accomplished task is second in accomplished list
         assertEquals("Give to the poor", tm1.getAaccomplishments().get(1).getTitle());
         //check that two items have removed from task list
