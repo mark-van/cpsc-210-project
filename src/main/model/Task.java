@@ -18,6 +18,13 @@ public class Task implements Writable {
         this.url = url;
     }
 
+    public void checkURL() throws InvalidUrlException {
+        if (!(url.contains(".ca") || url.contains(".com") || url.contains(".org")
+                || url.contains(".net") || url.contains(".int") || url.contains(".edu"))) {
+            throw new InvalidUrlException();
+        }
+    }
+
     public String getTitle() {
         return title;
     }

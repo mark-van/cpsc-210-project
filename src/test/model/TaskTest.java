@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TaskTest {
     Task t1;
+    Task t2;
 
     @Test
     public void testConstructor() {
@@ -21,5 +22,18 @@ public class TaskTest {
         assertEquals("Give to the poor", t1.getTitle());
         assertEquals("https://childrenfirstcanada.org/donate", t1.getUrl());
 
+        try{
+            t1.checkURL();
+        }catch (InvalidUrlException e){
+            fail("you should not be here");
+        }
+        t2 = new Task(new Victim("environment", "IT'S SO HOT"), "Shut doors, start a compost, " +
+                "and switch to more environmentally friendly tansportation", "www.notawebsite.noway");
+        try{
+            t2.checkURL();
+            fail("you should not be here");
+        }catch (InvalidUrlException e){
+            //good jon if you got here
+        }
     }
 }
