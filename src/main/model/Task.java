@@ -15,14 +15,20 @@ public class Task implements Writable {
     public Task(Victim victim, String title, String url) {
         this.victim = victim;
         this.title = title;
-        this.url = url;
+        //this.url = url;
+        try {
+            checkURL(url);
+        } catch (InvalidUrlException e) {
+            this.url = "https://reflectionsfromaredhead.com/make-the-world-a-better-place/";
+        }
     }
 
-    public void checkURL() throws InvalidUrlException {
+    public void checkURL(String url) throws InvalidUrlException {
         if (!(url.contains(".ca") || url.contains(".com") || url.contains(".org")
                 || url.contains(".net") || url.contains(".int") || url.contains(".edu"))) {
             throw new InvalidUrlException();
         }
+        this.url = url;
     }
 
     public String getTitle() {
