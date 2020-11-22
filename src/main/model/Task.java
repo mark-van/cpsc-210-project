@@ -23,6 +23,9 @@ public class Task implements Writable {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: throws InvalidUrlException when the given string is not a valid website. Otherwise set task's url
+    //         to given string.
     public void checkURL(String url) throws InvalidUrlException {
         if (!(url.contains(".ca") || url.contains(".com") || url.contains(".org")
                 || url.contains(".net") || url.contains(".int") || url.contains(".edu"))) {

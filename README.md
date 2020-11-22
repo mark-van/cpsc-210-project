@@ -33,3 +33,13 @@ I have several motivations:
 - As a user, I want to be able to view the list of tasks on my to-do list
 - As a user, I want to be able to save my to-do list to file
 - As a user, I want to be able to be able to load my to-do list from file 
+
+## Phase 4: Task 2
+- I implemented the robust exceptions option. 
+- Class:Task 
+- Methods:constructor and checkURL
+
+## Phase 4: Task 3
+- I would create an Accomplishment class that extends Task
+- I would create a Failure class that extends Task
+- I would have made an Abstract TaskManager class that a GuiTaskManager and AtonementAPPTaskManager extend
