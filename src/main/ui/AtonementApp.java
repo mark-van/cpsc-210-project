@@ -19,7 +19,7 @@ public class AtonementApp {
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
 
-    // EFFECTS: runs the teller application
+    // EFFECTS: runs the teller application dd
     public AtonementApp() {
         runAtonement();
     }

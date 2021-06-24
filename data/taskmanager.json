@@ -3,27 +3,41 @@
         "victim message": "io",
         "title": "99",
         "victim name": "jjh",
-        "url": "99"
+        "url": "https://reflectionsfromaredhead.com/make-the-world-a-better-place/"
     }],
     "failed": [
         {
             "victim message": "n",
             "title": "jh",
             "victim name": "jj",
-            "url": "j"
+            "url": "https://reflectionsfromaredhead.com/make-the-world-a-better-place/"
         },
         {
             "victim message": "rr",
             "title": "rr",
             "victim name": "rr",
-            "url": "rr"
+            "url": "https://reflectionsfromaredhead.com/make-the-world-a-better-place/"
+        },
+        {
+            "victim message": "dd",
+            "title": "dd",
+            "victim name": "nam",
+            "url": "https://reflectionsfromaredhead.com/make-the-world-a-better-place/"
         }
     ],
-    "tasks": [{
-        "victim message": "1",
-        "title": "1",
-        "victim name": "11",
-        "url": "1"
-    }],
+    "tasks": [
+        {
+            "victim message": "1",
+            "title": "1",
+            "victim name": "11",
+            "url": "https://reflectionsfromaredhead.com/make-the-world-a-better-place/"
+        },
+        {
+            "victim message": "dd",
+            "title": "dd",
+            "victim name": "dd",
+            "url": "https://reflectionsfromaredhead.com/make-the-world-a-better-place/"
+        }
+    ],
     "TaskManager:": "user"
 }
