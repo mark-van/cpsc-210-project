@@ -1,22 +1,13 @@
-# Penance/Atonement
+# Goodwill Reminder
 
 ## Function
-
-This application will create a list of tasks to complete in order to make reparations for the user's damaging habits. 
-The application will start by asking a series of questions to determine who or what(ie. then environment, ethical 
-companies, the hungry, the impoverished...) the user has harmed, and to what extent. From this questionnaire, a list of 
-tasks will be developed. When a task is complete, it will be moved to the accomplishments list. If a user refuses a 
-task, an image of the thing they harmed will appear on screen, and they will be asked "are you sure?", then upon 
-affirmation an even more horrific image will appear and the user will be asked if they are "positive?" Then upon the 
-second affirmative response, the task is moved to the failed list and 3 more tasks of the same category(related to the 
-same who or what) of less difficulty will be generated. If the user completes all of their tasks a peaceful image will 
-appear.
+Basic to do list application developed for the CPSC 210 Software Construction course project. Stores all accomplished, current and failed tasks, and offers negative feedback for failure. Implements state-persitence with JSON-files and used a Jpanel GUI to view current tasks, input new tasks and trasnfer tasks to the failed or accomplished category.
 
 ## Who will use it
 
 Anyone who lives a normal lifestyle and is concerned about the largely unseen repercussion of their day to day actions
 
-## Why is this project of interest to me(the programmer)
+## Why is this project of interest to me
 
 I have several motivations:
 - Help the **environment** and other in need
@@ -33,6 +24,8 @@ I have several motivations:
 - As a user, I want to be able to view the list of tasks on my to-do list
 - As a user, I want to be able to save my to-do list to file
 - As a user, I want to be able to be able to load my to-do list from file 
+
+##Notes to Grader
 
 ## Phase 4: Task 2
 - I implemented the robust exceptions option. 
