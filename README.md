@@ -1,7 +1,7 @@
 # Goodwill Reminder
 
 ## Function
-Basic to do list application developed for the CPSC 210 Software Construction course project. Stores all accomplished, current and failed tasks, and offers negative feedback for failure. Implements state-persitence with JSON-files and used a Jpanel GUI to view current tasks, input new tasks and trasnfer tasks to the failed or accomplished category.
+Basic to do list application developed for the CPSC 210 Software Construction course project. Stores all accomplished, current and failed tasks, and offers negative feedback for failure. Implements state-persitence with JSON-files and uses a Jpanel GUI to view current tasks, input new tasks and transfer tasks to the failed or accomplished category.
 
 ## Who will use it
 
