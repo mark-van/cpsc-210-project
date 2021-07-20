@@ -10,11 +10,10 @@ Anyone who lives a normal lifestyle and is concerned about the largely unseen re
 ## Why is this project of interest to me
 
 I have several motivations:
-- Help the **environment** and other in need
+- Help the **environment** and others in need
 - People wan to help but prioritise their day to day
     - A *belief* that people want to help but are often too involved in their life to determine how to best assist those 
     in need
-- I would use it
 
 ## User Stories
 
