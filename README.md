@@ -24,7 +24,7 @@ I have several motivations:
 - As a user, I want to be able to save my to-do list to file
 - As a user, I want to be able to be able to load my to-do list from file 
 
-##Notes to Grader
+## Notes to Grader
 
 ## Phase 4: Task 2
 - I implemented the robust exceptions option. 
